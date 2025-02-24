@@ -1,5 +1,6 @@
 import { ChevronRight, LogOut, Settings, User2Icon } from "lucide-react";
 import { Link } from "raviger";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +18,8 @@ export default function UserDashboard() {
   const facilities = user.facilities || [];
   const organizations = user.organizations || [];
 
+  const { t } = useTranslation();
+
   return (
     <div className="container mx-auto space-y-4 md:space-y-8 max-w-5xl px-4 py-4 md:p-6">
       {/* Welcome Section */}
@@ -29,7 +32,7 @@ export default function UserDashboard() {
           />
           <div className="space-y-1">
             <h1 className="text-xl md:text-2xl font-bold">
-              Welcome back, {user.first_name}!
+              {t("welcome_back_user", { name: user.first_name })}
             </h1>
             <p className="text-sm md:text-base text-gray-500">
               {new Date().toLocaleDateString("en-US", {
@@ -41,7 +44,7 @@ export default function UserDashboard() {
             </p>
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 flex-wrap">
           <Button
             variant="outline"
             size="sm"
@@ -53,7 +56,7 @@ export default function UserDashboard() {
               className="gap-2 text-inherit"
             >
               <Settings className="h-4 w-4" />
-              Edit Profile
+              {t("edit_profile")}
             </Link>
           </Button>
           {user.is_superuser && (
@@ -65,7 +68,7 @@ export default function UserDashboard() {
             >
               <Link href="/admin/questionnaire" className="gap-2 text-inherit">
                 <User2Icon className="h-4 w-4" />
-                Admin Dashboard
+                {t("admin_dashboard")}
               </Link>
             </Button>
           )}
@@ -76,7 +79,7 @@ export default function UserDashboard() {
             onClick={() => signOut()}
           >
             <LogOut className="h-4 w-4" />
-            Sign Out
+            {t("sign_out")}
           </Button>
         </div>
       </div>
@@ -105,7 +108,7 @@ export default function UserDashboard() {
                         {facility.name}
                       </h3>
                       <p className="text-xs md:text-sm text-gray-500 truncate">
-                        View facility details
+                        {t("view_facility_details")}
                       </p>
                     </div>
                     <ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-gray-500" />
