@@ -6,7 +6,7 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -39,6 +39,7 @@ import { generateSlug } from "@/Utils/utils";
 import { ChargeItemDefinitionForm } from "@/pages/Facility/settings/chargeItemDefinitions/ChargeItemDefinitionForm";
 import ObservationDefinitionForm from "@/pages/Facility/settings/observationDefinition/ObservationDefinitionForm";
 import { CreateSpecimenDefinition } from "@/pages/Facility/settings/specimen-definitions/CreateSpecimenDefinition";
+import { CodeSchema } from "@/types/base/code/code";
 import chargeItemDefinitionApi from "@/types/billing/chargeItemDefinition/chargeItemDefinitionApi";
 import {
   type ActivityDefinitionCreateSpec,
@@ -60,30 +61,12 @@ const formSchema = z.object({
   description: z.string().min(1, "Description is required"),
   usage: z.string().min(1, "Usage is required"),
   derived_from_uri: z.string().nullable(),
-  status: z.nativeEnum(Status),
-  category: z.nativeEnum(Category),
-  kind: z.nativeEnum(Kind),
-  code: z.object({
-    code: z.string().min(1, "Code is required"),
-    display: z.string().min(1, "Display name is required"),
-    system: z.string().min(1, "System is required"),
-  }),
-  body_site: z
-    .object({
-      code: z.string().min(1, "Code is required"),
-      display: z.string().min(1, "Display name is required"),
-      system: z.string().min(1, "System is required"),
-    })
-    .nullable(),
-  diagnostic_report_codes: z
-    .array(
-      z.object({
-        code: z.string().min(1, "Code is required"),
-        display: z.string().min(1, "Display name is required"),
-        system: z.string().min(1, "System is required"),
-      }),
-    )
-    .default([]),
+  status: z.enum(Status),
+  category: z.enum(Category, { error: "Required" }),
+  kind: z.enum(Kind),
+  code: CodeSchema,
+  body_site: CodeSchema.nullable(),
+  diagnostic_report_codes: z.array(CodeSchema).prefault([]),
   specimen_requirements: z
     .array(
       z.object({
@@ -105,7 +88,7 @@ const formSchema = z.object({
         ),
       }),
     )
-    .default([]),
+    .prefault([]),
   observation_result_requirements: z
     .array(
       z.object({
@@ -127,7 +110,7 @@ const formSchema = z.object({
         ),
       }),
     )
-    .default([]),
+    .prefault([]),
   charge_item_definitions: z
     .array(
       z.object({
@@ -149,8 +132,8 @@ const formSchema = z.object({
         ),
       }),
     )
-    .default([]),
-  locations: z.array(z.string()).default([]),
+    .prefault([]),
+  locations: z.array(z.string()).prefault([]),
 });
 
 export default function ActivityDefinitionForm({
@@ -365,6 +348,10 @@ function ActivityDefinitionFormContent({
             locations: existingData.locations?.map((l) => l.id) || [],
           }
         : {
+            title: "",
+            slug: "",
+            description: "",
+            usage: "",
             status: Status.active,
             kind: Kind.service_request,
             specimen_requirements: [],
@@ -519,7 +506,7 @@ function ActivityDefinitionFormContent({
                             onChange={(e) => {
                               const sanitizedValue = e.target.value
                                 .toLowerCase()
-                                .replace(/[^a-z0-9-]/g, "");
+                                .replace(/[^a-z0-9_-]/g, "");
                               field.onChange(sanitizedValue);
                             }}
                           />
@@ -804,7 +791,12 @@ function ActivityDefinitionFormContent({
                         createForm={(onSuccess) => (
                           <CreateSpecimenDefinition
                             facilityId={facilityId}
-                            onSuccess={onSuccess}
+                            onSuccess={() => {
+                              queryClient.invalidateQueries({
+                                queryKey: ["specimenDefinitions"],
+                              });
+                              onSuccess();
+                            }}
                           />
                         )}
                       />
@@ -867,7 +859,12 @@ function ActivityDefinitionFormContent({
                           <div className="py-2">
                             <ObservationDefinitionForm
                               facilityId={facilityId}
-                              onSuccess={onSuccess}
+                              onSuccess={() => {
+                                queryClient.invalidateQueries({
+                                  queryKey: ["observationDefinitions"],
+                                });
+                                onSuccess();
+                              }}
                             />
                           </div>
                         )}
@@ -916,7 +913,12 @@ function ActivityDefinitionFormContent({
                           <div className="py-2">
                             <ChargeItemDefinitionForm
                               facilityId={facilityId}
-                              onSuccess={onSuccess}
+                              onSuccess={() => {
+                                queryClient.invalidateQueries({
+                                  queryKey: ["chargeItemDefinitions"],
+                                });
+                                onSuccess();
+                              }}
                             />
                           </div>
                         )}

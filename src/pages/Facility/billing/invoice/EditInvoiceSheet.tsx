@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import * as z from "zod";
+import * as z from "zod/v4";
 
 import CareIcon from "@/CAREUI/icons/CareIcon";
 
@@ -109,8 +109,8 @@ export default function EditInvoiceSheet({
 
     const data: InvoiceCreate = {
       status: invoice.status,
-      payment_terms: values.payment_terms?.trim() || null,
-      note: values.note?.trim() || null,
+      payment_terms: values.payment_terms?.trim(),
+      note: values.note?.trim(),
       account: invoice.account.id,
       charge_items: chargeItemIds,
       issue_date: invoice.issue_date,

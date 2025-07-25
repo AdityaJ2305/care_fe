@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 export interface Code {
   system: string;
@@ -6,11 +6,14 @@ export interface Code {
   display: string;
 }
 
-export const CodeSchema = z.object({
-  system: z.string(),
-  code: z.string(),
-  display: z.string(),
-});
+export const CodeSchema = z.object(
+  {
+    system: z.string(),
+    code: z.string(),
+    display: z.string(),
+  },
+  { error: "Required" },
+);
 
 export type ValueSetSystem =
   | "system-allergy-code"

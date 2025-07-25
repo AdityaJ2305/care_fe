@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { groupItemsByTime } from "@/lib/time";
 import { cn } from "@/lib/utils";
@@ -163,8 +163,8 @@ function convertDurationToDays(value: number, unit: string): number {
 const formSchema = z.object({
   items: z.array(
     z.object({
-      reference_id: z.string().uuid(),
-      medication: z.any(),
+      reference_id: z.uuid(),
+      medication: z.any().optional(),
       productKnowledge: z.any(),
       isSelected: z.boolean(),
       daysSupply: z.number().min(1),
@@ -173,7 +173,7 @@ const formSchema = z.object({
       lots: z
         .array(
           z.object({
-            selectedInventoryId: z.string().uuid(),
+            selectedInventoryId: z.uuid(),
             quantity: z.number().min(0),
           }),
         )
@@ -181,8 +181,8 @@ const formSchema = z.object({
       substitution: z
         .object({
           substitutedProductKnowledge: z.any(), // ProductKnowledgeBase of the substitute
-          type: z.nativeEnum(SubstitutionType),
-          reason: z.nativeEnum(SubstitutionReason),
+          type: z.enum(SubstitutionType),
+          reason: z.enum(SubstitutionReason),
         })
         .optional(),
       timeGroup: z.string().optional(), // Add time group identifier
@@ -1018,7 +1018,7 @@ export default function MedicationBillForm({ patientId }: Props) {
   const calculatePrices = (inventory: InventoryRead | undefined) => {
     if (!inventory)
       return {
-        basePrice: 0,
+        basePrice: "0",
       };
 
     const priceComponents =
@@ -1029,7 +1029,7 @@ export default function MedicationBillForm({ patientId }: Props) {
       (component) =>
         component.monetary_component_type === MonetaryComponentType.base,
     );
-    const basePrice = baseComponent?.amount || 0;
+    const basePrice = baseComponent?.amount || "0";
 
     return {
       basePrice,

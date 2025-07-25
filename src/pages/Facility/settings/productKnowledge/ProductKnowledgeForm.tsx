@@ -6,7 +6,7 @@ import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -57,34 +57,34 @@ const codeSchema = z.object({
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   slug: z.string().min(1, "Slug is required"),
-  product_type: z.nativeEnum(ProductKnowledgeType),
-  status: z.nativeEnum(ProductKnowledgeStatus),
+  product_type: z.enum(ProductKnowledgeType),
+  status: z.enum(ProductKnowledgeStatus),
   code: codeSchema.nullable(),
   names: z
     .array(
       z.object({
-        name_type: z.nativeEnum(ProductNameTypes),
+        name_type: z.enum(ProductNameTypes),
         name: z.string().min(1, "Name is required"),
       }),
     )
-    .default([]),
+    .prefault([]),
   storage_guidelines: z
     .array(
       z.object({
         note: z.string().min(1, "Note is required"),
         stability_duration: z
           .object({
-            value: z.number().int().optional(),
+            value: z.int().optional(),
             unit: codeSchema,
           })
           .refine((data) => data.value !== undefined && data.value !== null),
       }),
     )
-    .default([]),
+    .prefault([]),
   definitional: z
     .object({
       dosage_form: codeSchema.optional(),
-      intended_routes: z.array(codeSchema).default([]),
+      intended_routes: z.array(codeSchema).prefault([]),
     })
     .nullable()
     .optional()
@@ -183,6 +183,8 @@ function ProductKnowledgeFormContent({
     }
 
     return {
+      name: "",
+      slug: "",
       product_type: ProductKnowledgeType.medication,
       names: [],
       storage_guidelines: [],
@@ -358,7 +360,7 @@ function ProductKnowledgeFormContent({
                             onChange={(e) => {
                               const sanitizedValue = e.target.value
                                 .toLowerCase()
-                                .replace(/[^a-z0-9-]/g, "");
+                                .replace(/[^a-z0-9_-]/g, "");
                               field.onChange(sanitizedValue);
                             }}
                           />

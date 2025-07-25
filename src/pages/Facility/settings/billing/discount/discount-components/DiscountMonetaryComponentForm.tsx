@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import Autocomplete from "@/components/ui/autocomplete";
 import { Button } from "@/components/ui/button";
@@ -34,13 +34,18 @@ import {
 const formSchema = z
   .object({
     monetary_component_type: z.literal(MonetaryComponentType.discount),
-    code: CodeSchema.nullable().optional(),
-    factor: z.number().min(0).max(100).nullable().optional(),
-    amount: z.number().min(0).nullable().optional(),
+    code: CodeSchema.optional(),
+    factor: z.number().min(0).max(100).optional(),
+    amount: z
+      .string()
+      .refine((val) => !val || Number(val) >= 0, {
+        message: "Amount must be greater than or equal to 0",
+      })
+      .optional(),
     title: z.string().min(1, { message: "field_required" }),
   })
   .refine((data) => data.factor != null || data.amount != null, {
-    message: "Either factor or amount must be provided",
+    error: "Either factor or amount must be provided",
     path: ["factor", "amount"],
   })
   .refine(
@@ -49,7 +54,7 @@ const formSchema = z
       return data.code == null || data.code.display.length > 0;
     },
     {
-      message: "Display text is required for custom codes",
+      error: "Display text is required for custom codes",
       path: ["code"],
     },
   );
@@ -78,9 +83,9 @@ export function DiscountMonetaryComponentForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       monetary_component_type: MonetaryComponentType.discount,
-      code: defaultValues?.code || null,
-      factor: defaultValues?.factor || null,
-      amount: defaultValues?.amount || null,
+      code: defaultValues?.code,
+      factor: defaultValues?.factor,
+      amount: defaultValues?.amount,
       title: defaultValues?.title || "",
     },
   });
@@ -88,9 +93,9 @@ export function DiscountMonetaryComponentForm({
   const handleValueTypeChange = (value: "factor" | "amount") => {
     setValueType(value);
     if (value === "factor") {
-      form.setValue("amount", null);
+      form.setValue("amount", undefined);
     } else {
-      form.setValue("factor", null);
+      form.setValue("factor", undefined);
     }
   };
 
@@ -216,7 +221,7 @@ export function DiscountMonetaryComponentForm({
                     value={field.value?.code ?? ""}
                     onChange={(value) => {
                       if (value === "") {
-                        form.setValue("code", null);
+                        form.setValue("code", undefined);
                         return;
                       }
                       form.setValue(

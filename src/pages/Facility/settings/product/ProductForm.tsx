@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import Autocomplete from "@/components/ui/autocomplete";
 import { Button } from "@/components/ui/button";
@@ -69,15 +69,16 @@ import {
 import productKnowledgeApi from "@/types/inventory/productKnowledge/productKnowledgeApi";
 
 const formSchema = z.object({
-  status: z.nativeEnum(ProductStatusOptions),
+  status: z.enum(ProductStatusOptions),
   product_knowledge: z.string().min(1, "Product Knowledge is required"),
   charge_item_definition: z.string().optional(),
-  batch: z
-    .object({
-      lot_number: z.string().optional(),
-    })
-    .required(),
-  expiration_date: z.date(),
+  batch: z.object(
+    {
+      lot_number: z.string({ error: "Required" }).min(1, { error: "Required" }),
+    },
+    { error: "Required" },
+  ),
+  expiration_date: z.date({ error: "Required" }),
 });
 
 export default function ProductForm({
@@ -245,7 +246,7 @@ export function ProductFormContent({
           }
         : {
             status: ProductStatusOptions.active,
-            product_knowledge: productKnowledgeId,
+            product_knowledge: productKnowledgeId ?? "",
           },
   });
 
