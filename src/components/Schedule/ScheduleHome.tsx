@@ -160,7 +160,7 @@ export function ScheduleHome({ resourceType, resourceId, facilityId }: Props) {
                     >
                       {date.getDate()}
                     </span>
-                    <div className="flex justify-center gap-0.5">
+                    <div className="flex justify-center gap-0.5 ">
                       {templates?.slice(0, 5).map((template) => (
                         <ColoredIndicator
                           key={template.id}
