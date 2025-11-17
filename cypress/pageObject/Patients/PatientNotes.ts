@@ -9,6 +9,11 @@ export class PatientNotes {
     return this;
   }
 
+  openPatientNotesTab() {
+    cy.get('[data-cy="tab-notes"]').click();
+    return this;
+  }
+
   typeThreadTitle(title: string) {
     cy.typeIntoField('[data-cy="new-thread-title-input"]', title, {
       clearBeforeTyping: true,
@@ -83,6 +88,38 @@ export class PatientNotes {
 
   interceptSendMessageRequest() {
     cy.intercept("POST", "/api/v1/patient/*/thread/*/note/").as("sendMessage");
+    return this;
+  }
+
+  verifyThreadExists(title: string) {
+    cy.get('[data-cy="thread-title"]').contains(title).should("exist");
+    return this;
+  }
+
+  verifyThreadDoesNotExist(title: string) {
+    cy.get('[data-cy="thread-title"]').contains(title).should("not.exist");
+    return this;
+  }
+
+  verifyThreadCount(count: number) {
+    cy.get('[data-cy="thread-title"]').should("have.length", count);
+    return this;
+  }
+
+  verifyMessagesOrder(messages: string[]) {
+    // Verify messages appear in the correct order from top to bottom
+    cy.get('[data-cy="chat-messages"]').within(() => {
+      messages.forEach((message, index) => {
+        cy.contains(message).should("exist");
+      });
+    });
+    return this;
+  }
+
+  verifyMessageCount(count: number) {
+    cy.get('[data-cy="chat-messages"]')
+      .find(".animate-in")
+      .should("have.length.at.least", count);
     return this;
   }
 }
