@@ -1,3 +1,28 @@
+/**
+ * Remove unused i18n keys from locale files
+ *
+ * This script uses AST-based traversal (via Babel) to extract i18n keys from the codebase
+ * and remove unused keys from locale JSON files. It replaces the previous regex-based approach
+ * for more reliable and accurate key detection.
+ *
+ * Features:
+ * - ✅ Detects static keys: t("key") and i18n.t("key")
+ * - ✅ Detects plural keys: Automatically adds _one and _other variants when count is present
+ *   - t("key", { count: ... })
+ *   - i18n.t("key", { count: ... })
+ *   - <Trans i18nKey="key" values={{ count: ... }} />
+ * - ✅ Detects Trans components: <Trans i18nKey="key">...</Trans>
+ * - ✅ Detects dynamic keys: t(`prefix__${variable}`) extracts "prefix__" as dynamic prefix
+ * - ✅ Handles multiline and nested expressions correctly
+ *
+ * Usage:
+ *   node scripts/remove-unused-i18n.js
+ *
+ * For testing:
+ *   const { extractUsedKeys } = require('./scripts/remove-unused-i18n.js');
+ *   const { usedKeys, dynamicPrefixes } = await extractUsedKeys('./src', ['tsx', 'ts']);
+ */
+
 const fs = require("fs");
 const path = require("path");
 const glob = require("glob");
@@ -47,6 +72,13 @@ function getDynamicPrefix(node) {
   return null;
 }
 
+/**
+ * Extract i18n keys used in the codebase via AST traversal
+ *
+ * @param {string} src - Source directory to scan
+ * @param {string[]} extensions - File extensions to process (e.g., ['ts', 'tsx'])
+ * @returns {Promise<{usedKeys: Set<string>, dynamicPrefixes: Set<string>}>}
+ */
 async function extractUsedKeys(src, extensions) {
   const files = glob.sync(`**/*.+(${extensions.join("|")})`, {
     cwd: src,
