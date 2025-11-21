@@ -38,7 +38,7 @@ function hasCountProperty(objectExpression) {
   }
   return objectExpression.properties.some(
     (prop) =>
-      (prop.type === "ObjectProperty" || prop.type === "Property") &&
+      prop.type === "ObjectProperty" &&
       prop.key &&
       ((prop.key.type === "Identifier" && prop.key.name === "count") ||
         (prop.key.type === "StringLiteral" && prop.key.value === "count")),
@@ -52,7 +52,11 @@ function getStaticValue(node) {
   if (node.type === "StringLiteral") {
     return node.value;
   }
-  if (node.type === "TemplateLiteral" && node.expressions.length === 0) {
+  if (
+    node.type === "TemplateLiteral" &&
+    node.expressions.length === 0 &&
+    node.quasis?.length > 0
+  ) {
     return node.quasis[0].value.cooked;
   }
   return null;
@@ -169,7 +173,11 @@ async function extractUsedKeys(src, extensions) {
 
             // Find i18nKey and values attributes
             for (const attr of openingElement.attributes) {
-              if (attr.type !== "JSXAttribute" || !attr.name?.name) continue;
+              if (
+                attr.type !== "JSXAttribute" ||
+                attr.name?.type !== "JSXIdentifier"
+              )
+                continue;
 
               const attrName = attr.name.name;
               const attrValue = attr.value;
