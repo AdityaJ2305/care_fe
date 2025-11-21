@@ -9,6 +9,7 @@ import {
 import { TagConfig, TagResource } from "@/types/emr/tagConfig/tagConfig";
 import { CalendarFold, CircleDashed, Tag } from "lucide-react";
 
+import { t } from "i18next";
 import { SelectedDateBadge, getDateOperations } from "./dateFilter";
 import { GenericSelectedBadge } from "./genericFilter";
 import { SelectedTagBadge } from "./tagFilter";
@@ -38,7 +39,7 @@ export const encounterStatusFilter = (
     "command",
     Array.from(ENCOUNTER_STATUS).map((value) => ({
       value: value,
-      label: value,
+      label: t(value),
       color: ENCOUNTER_STATUS_FILTER_COLORS[value],
     })),
     {
@@ -70,11 +71,11 @@ export const encounterClassFilter = (
 ) =>
   createFilterConfig(
     key,
-    "class",
+    t("encounter_class"),
     "command",
     Array.from(ENCOUNTER_CLASS).map((value) => ({
       value: value,
-      label: `encounter_class__${value}`,
+      label: t(`encounter_class__${value}`),
       color: ENCOUNTER_CLASS_FILTER_COLORS[value as EncounterClass],
     })),
     {
@@ -106,11 +107,11 @@ export const encounterPriorityFilter = (
 ) =>
   createFilterConfig(
     key,
-    label || "priority",
+    label ? t(label) : t("priority"),
     "command",
     Array.from(ENCOUNTER_PRIORITY).map((value) => ({
       value: value.toLowerCase(),
-      label: `encounter_priority__${value}`,
+      label: t(`encounter_priority__${value}`),
       color: ENCOUNTER_PRIORITY_FILTER_COLORS[value as EncounterPriority],
     })),
     {
@@ -140,7 +141,7 @@ export const dateFilter = (
   dateRangeOptions?: DateRangeOption[],
   disableClear?: boolean,
 ) =>
-  createFilterConfig(key, label || "started_date", "date", [], {
+  createFilterConfig(key, label || t("started_date"), "date", [], {
     renderSelected: (
       selected: FilterValues,
       filter?: FilterConfig,
@@ -167,21 +168,27 @@ export const tagFilter = (
   mode: FilterMode = "multi",
   label?: string,
 ) =>
-  createFilterConfig(key, label || "tags", "tag", [], {
-    resource: resource,
-    renderSelected: (selected: FilterValues) => {
-      return <SelectedTagBadge selected={selected as TagConfig[]} />;
+  createFilterConfig(
+    key,
+    label ? t(label) : t("tags", { count: 2 }),
+    "tag",
+    [],
+    {
+      resource: resource,
+      renderSelected: (selected: FilterValues) => {
+        return <SelectedTagBadge selected={selected as TagConfig[]} />;
+      },
+      getOperations: (selected: FilterValues) => {
+        const selectedTags = selected as TagConfig[];
+        if (selectedTags.length === 1)
+          return [{ label: "includes", value: "all" }];
+        return [
+          { label: "has_all_of", value: "all" },
+          { label: "has_any_of", value: "any" },
+        ];
+      },
+      mode,
+      icon: <Tag className="w-4 h-4" />,
+      operationKey: "tags_behavior",
     },
-    getOperations: (selected: FilterValues) => {
-      const selectedTags = selected as TagConfig[];
-      if (selectedTags.length === 1)
-        return [{ label: "includes", value: "all" }];
-      return [
-        { label: "has_all_of", value: "all" },
-        { label: "has_any_of", value: "any" },
-      ];
-    },
-    mode,
-    icon: <Tag className="w-4 h-4" />,
-    operationKey: "tags_behavior",
-  });
+  );
