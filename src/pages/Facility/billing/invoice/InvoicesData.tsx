@@ -113,7 +113,12 @@ export default function InvoicesData({
             <TabsTrigger value="all">{t("all")}</TabsTrigger>
             {Object.values(InvoiceStatus).map((status) => (
               <TabsTrigger key={status} value={status}>
-                {t(statusMap[status].label)}
+                {statusMap[status].label === "draft" && t("draft")}
+                {statusMap[status].label === "issued" && t("issued")}
+                {statusMap[status].label === "balanced" && t("balanced")}
+                {statusMap[status].label === "cancelled" && t("cancelled")}
+                {statusMap[status].label === "entered_in_error" &&
+                  t("entered_in_error")}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -147,7 +152,12 @@ export default function InvoicesData({
               <SelectItem value="all">{t("all")}</SelectItem>
               {Object.values(InvoiceStatus).map((status) => (
                 <SelectItem key={status} value={status}>
-                  {t(statusMap[status].label)}
+                  {statusMap[status].label === "draft" && t("draft")}
+                  {statusMap[status].label === "issued" && t("issued")}
+                  {statusMap[status].label === "balanced" && t("balanced")}
+                  {statusMap[status].label === "cancelled" && t("cancelled")}
+                  {statusMap[status].label === "entered_in_error" &&
+                    t("entered_in_error")}
                 </SelectItem>
               ))}
             </SelectGroup>
@@ -182,7 +192,15 @@ export default function InvoicesData({
 
                   <TableCell>
                     <Badge variant={INVOICE_STATUS_COLORS[invoice.status]}>
-                      {t(statusMap[invoice.status].label)}
+                      {statusMap[invoice.status].label === "draft" && t("draft")}
+                      {statusMap[invoice.status].label === "issued" &&
+                        t("issued")}
+                      {statusMap[invoice.status].label === "balanced" &&
+                        t("balanced")}
+                      {statusMap[invoice.status].label === "cancelled" &&
+                        t("cancelled")}
+                      {statusMap[invoice.status].label === "entered_in_error" &&
+                        t("entered_in_error")}
                     </Badge>
                   </TableCell>
                   <TableCell>

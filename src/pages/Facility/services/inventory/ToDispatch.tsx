@@ -160,7 +160,8 @@ function IncomingOrdersTab({
                 value={status.value}
                 onClick={() => updateQuery({ status: status.value })}
               >
-                {t(status.label)}
+                {status.label === "pending" && t("pending")}
+                {status.label === "completed" && t("completed")}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -249,7 +250,8 @@ function OutgoingDeliveriesTab({
                 value={status.value}
                 onClick={() => updateQuery({ status: status.value })}
               >
-                {t(status.label)}
+                {status.label === "created" && t("created")}
+                {status.label === "completed" && t("completed")}
               </TabsTrigger>
             ))}
           </TabsList>
