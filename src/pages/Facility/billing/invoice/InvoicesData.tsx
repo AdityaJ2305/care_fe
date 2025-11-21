@@ -192,7 +192,8 @@ export default function InvoicesData({
 
                   <TableCell>
                     <Badge variant={INVOICE_STATUS_COLORS[invoice.status]}>
-                      {statusMap[invoice.status].label === "draft" && t("draft")}
+                      {statusMap[invoice.status].label === "draft" &&
+                        t("draft")}
                       {statusMap[invoice.status].label === "issued" &&
                         t("issued")}
                       {statusMap[invoice.status].label === "balanced" &&

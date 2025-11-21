@@ -239,7 +239,7 @@ export function EditChargeItemSheet({
                             <SelectContent>
                               {Object.values(ChargeItemStatus).map((status) => (
                                 <SelectItem key={status} value={status}>
-                                  {t(status)}
+                                  {t(`status__${status}`)}
                                 </SelectItem>
                               ))}
                             </SelectContent>

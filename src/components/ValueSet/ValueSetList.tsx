@@ -341,7 +341,7 @@ export function ValueSetList() {
                         className="flex-1"
                       >
                         <IconComponent className="size-4" />
-                        {t(status)}
+                        {t(`status__${status}`)}
                       </TabsTrigger>
                     );
                   })}

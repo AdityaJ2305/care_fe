@@ -261,7 +261,7 @@ export const MedicineAdminForm: React.FC<MedicineAdminFormProps> = ({
           <SelectContent>
             {MEDICATION_ADMINISTRATION_STATUS.map((status) => (
               <SelectItem key={status} value={status}>
-                {t(status)}
+                {t(`status__${status}`)}
               </SelectItem>
             ))}
           </SelectContent>

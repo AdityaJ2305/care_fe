@@ -533,7 +533,7 @@ export function MedicationRequestQuestion({
               {
                 key: "status",
                 label: t("status"),
-                render: (status) => t(status),
+                render: (status) => t(`status__${status}`),
               },
               {
                 key: "note",

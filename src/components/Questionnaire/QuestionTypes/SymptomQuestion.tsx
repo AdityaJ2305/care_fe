@@ -106,7 +106,7 @@ function StatusSelect({
       <SelectContent>
         {SYMPTOM_CLINICAL_STATUS.map((status) => (
           <SelectItem key={status} value={status}>
-            {t(status)}
+            {t(`status__${status}`)}
           </SelectItem>
         ))}
       </SelectContent>
@@ -804,7 +804,7 @@ export function SymptomQuestion({
               {
                 key: "clinical_status",
                 label: t("status"),
-                render: (status: string) => t(status),
+                render: (status: string) => t(`status__${status}`),
               },
               {
                 key: "onset",

@@ -317,7 +317,7 @@ export function BedChargeItemsTable({
             <TabsTrigger value="all">{t("all")}</TabsTrigger>
             {Object.values(ChargeItemStatus).map((status) => (
               <TabsTrigger key={status} value={status}>
-                {t(status)}
+                {t(`status__${status}`)}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -338,7 +338,7 @@ export function BedChargeItemsTable({
             <SelectItem value="all">{t("all")}</SelectItem>
             {Object.values(ChargeItemStatus).map((status) => (
               <SelectItem key={status} value={status}>
-                {t(status)}
+                {t(`status__${status}`)}
               </SelectItem>
             ))}
           </SelectContent>

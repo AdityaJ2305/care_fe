@@ -147,7 +147,7 @@ function ClinicalStatusSelect({
       <SelectContent>
         {DIAGNOSIS_CLINICAL_STATUS.map((status) => (
           <SelectItem key={status} value={status} className="capitalize">
-            {t(status)}
+            {t(`status__${status}`)}
           </SelectItem>
         ))}
       </SelectContent>
@@ -183,7 +183,7 @@ function VerificationStatusSelect({
           (status) =>
             (isExistingRecord || status !== "entered_in_error") && (
               <SelectItem key={status} value={status} className="capitalize">
-                {t(status)}
+                {t(`status__${status}`)}
               </SelectItem>
             ),
         )}
@@ -554,7 +554,7 @@ export function DiagnosisQuestion({
               {
                 key: "clinical_status",
                 label: t("status"),
-                render: (status: string) => t(status),
+                render: (status: string) => t(`status__${status}`),
               },
               {
                 key: "onset",

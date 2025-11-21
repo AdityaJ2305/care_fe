@@ -64,7 +64,7 @@ function PatientIdentifierConfigCard({
               <Badge
                 variant={PATIENT_IDENTIFIER_CONFIG_STATUS_COLORS[config.status]}
               >
-                {t(config.status)}
+                {t(`status__${config.status}`)}
               </Badge>
             </div>
             <h3 className="font-medium text-gray-900">
@@ -296,7 +296,7 @@ export default function PatientIdentifierConfigList({
                               ]
                             }
                           >
-                            {t(config.status)}
+                            {t(`status__${config.status}`)}
                           </Badge>
                         </TableCell>
                         <TableCell>

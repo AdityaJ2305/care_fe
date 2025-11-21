@@ -432,7 +432,7 @@ export default function TreatmentSummary({
                     ]}
                     rows={allergies?.results.map((allergy) => ({
                       allergen: allergy.code.display,
-                      status: t(allergy.clinical_status),
+                      status: t(`status__${allergy.clinical_status}`),
                       criticality: t(allergy.criticality),
                       verification: t(allergy.verification_status),
                       notes: allergy.note,

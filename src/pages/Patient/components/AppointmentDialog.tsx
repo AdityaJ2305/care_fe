@@ -113,7 +113,7 @@ function AppointmentDialog({
           </DialogHeader>
           <DialogFooter className="flex flex-row sm:justify-between items-center bg-blue-200 m-0 w-full p-3 rounded-b-lg">
             <span className="text-sm font-semibold text-blue-700">
-              {t(appointment.status)}
+              {t(`appointment_status__${appointment.status}`)}
             </span>
             {!AppointmentFinalStatuses.includes(appointment.status) && (
               <span className="flex flex-row gap-2">

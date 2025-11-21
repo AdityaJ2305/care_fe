@@ -139,7 +139,7 @@ const MedicationStatusBadge: React.FC<MedicationStatusBadgeProps> = ({
       variant={status === "active" ? "green" : "secondary"}
       className="text-xs"
     >
-      {t(status)}
+      {t(`status__${status}`)}
     </Badge>
   );
 };

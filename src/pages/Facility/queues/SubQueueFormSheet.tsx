@@ -218,7 +218,7 @@ export default function SubQueueFormSheet({
                       {...field}
                       options={Object.values(TokenSubQueueStatus).map(
                         (status) => ({
-                          label: t(status),
+                          label: t(`status__${status}`),
                           value: status,
                         }),
                       )}

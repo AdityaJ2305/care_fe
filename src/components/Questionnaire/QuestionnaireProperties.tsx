@@ -100,7 +100,7 @@ function StatusSelector({
               htmlFor={`status-${status}`}
               className="text-sm mx-1 font-normal text-gray-950"
             >
-              {t(status)}
+              {t(`status__${status}`)}
             </Label>
           </div>
         ))}

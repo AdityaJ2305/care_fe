@@ -129,7 +129,7 @@ function PatientIndex() {
                   <Badge
                     variant={APPOINTMENT_STATUS_COLORS[appointment.status]}
                   >
-                    {t(appointment.status)}
+                    {t(`appointment_status__${appointment.status}`)}
                   </Badge>
                 </span>
               </div>
