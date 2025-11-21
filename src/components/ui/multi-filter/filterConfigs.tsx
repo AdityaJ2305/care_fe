@@ -9,7 +9,6 @@ import {
 import { TagConfig, TagResource } from "@/types/emr/tagConfig/tagConfig";
 import { CalendarFold, CircleDashed, Tag } from "lucide-react";
 
-import { t } from "i18next";
 import { SelectedDateBadge, getDateOperations } from "./dateFilter";
 import { GenericSelectedBadge } from "./genericFilter";
 import { SelectedTagBadge } from "./tagFilter";
@@ -39,7 +38,7 @@ export const encounterStatusFilter = (
     "command",
     Array.from(ENCOUNTER_STATUS).map((value) => ({
       value: value,
-      label: t(value),
+      label: value,
       color: ENCOUNTER_STATUS_FILTER_COLORS[value],
     })),
     {
@@ -71,11 +70,11 @@ export const encounterClassFilter = (
 ) =>
   createFilterConfig(
     key,
-    t("class"),
+    "class",
     "command",
     Array.from(ENCOUNTER_CLASS).map((value) => ({
       value: value,
-      label: t(`encounter_class__${value}`),
+      label: `encounter_class__${value}`,
       color: ENCOUNTER_CLASS_FILTER_COLORS[value as EncounterClass],
     })),
     {
@@ -107,11 +106,11 @@ export const encounterPriorityFilter = (
 ) =>
   createFilterConfig(
     key,
-    label ? t(label) : t("priority"),
+    label || "priority",
     "command",
     Array.from(ENCOUNTER_PRIORITY).map((value) => ({
       value: value.toLowerCase(),
-      label: t(`encounter_priority__${value}`),
+      label: `encounter_priority__${value}`,
       color: ENCOUNTER_PRIORITY_FILTER_COLORS[value as EncounterPriority],
     })),
     {
@@ -141,7 +140,7 @@ export const dateFilter = (
   dateRangeOptions?: DateRangeOption[],
   disableClear?: boolean,
 ) =>
-  createFilterConfig(key, label || t("started_date"), "date", [], {
+  createFilterConfig(key, label || "started_date", "date", [], {
     renderSelected: (
       selected: FilterValues,
       filter?: FilterConfig,
@@ -170,7 +169,7 @@ export const tagFilter = (
 ) =>
   createFilterConfig(
     key,
-    label ? t(label) : t("tags", { count: 2 }),
+    label || "tags",
     "tag",
     [],
     {
