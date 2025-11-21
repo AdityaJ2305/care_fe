@@ -160,7 +160,7 @@ function IncomingOrdersTab({
                 value={status.value}
                 onClick={() => updateQuery({ status: status.value })}
               >
-                {t(status.label)}
+                {t(`status__${status.label}`)}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -249,7 +249,7 @@ function OutgoingDeliveriesTab({
                 value={status.value}
                 onClick={() => updateQuery({ status: status.value })}
               >
-                {t(status.label)}
+                {t(`status__${status.label}`)}
               </TabsTrigger>
             ))}
           </TabsList>
