@@ -73,6 +73,26 @@ function getDynamicPrefix(node) {
 }
 
 /**
+ * Check if a CallExpression callee is a t() function call
+ */
+function isTCall(callee) {
+  return callee.type === "Identifier" && callee.name === "t";
+}
+
+/**
+ * Check if a CallExpression callee is an i18n.t() function call
+ */
+function isI18nTCall(callee) {
+  return (
+    callee.type === "MemberExpression" &&
+    callee.object?.type === "Identifier" &&
+    callee.object.name === "i18n" &&
+    callee.property?.type === "Identifier" &&
+    callee.property.name === "t"
+  );
+}
+
+/**
  * Extract i18n keys used in the codebase via AST traversal
  *
  * @param {string} src - Source directory to scan
@@ -107,13 +127,7 @@ async function extractUsedKeys(src, extensions) {
           const { callee, arguments: args } = path.node;
 
           // Check if it's t() or i18n.t() call
-          const isTFunction =
-            (callee.type === "Identifier" && callee.name === "t") ||
-            (callee.type === "MemberExpression" &&
-              callee.object?.type === "Identifier" &&
-              callee.object.name === "i18n" &&
-              callee.property?.type === "Identifier" &&
-              callee.property.name === "t");
+          const isTFunction = isTCall(callee) || isI18nTCall(callee);
 
           if (!isTFunction || args.length === 0) {
             return;
@@ -155,7 +169,7 @@ async function extractUsedKeys(src, extensions) {
 
             // Find i18nKey and values attributes
             for (const attr of openingElement.attributes) {
-              if (attr.type !== "JSXAttribute") continue;
+              if (attr.type !== "JSXAttribute" || !attr.name?.name) continue;
 
               const attrName = attr.name.name;
               const attrValue = attr.value;

@@ -1,5 +1,8 @@
 import { Trans, useTranslation } from "react-i18next";
 
+// Variable for test completeness
+const selectedQuestions = 3;
+
 export function AllKeysExample() {
   const { t, i18n } = useTranslation();
   const status = "cancelled";
@@ -48,6 +51,3 @@ export function AllKeysExample() {
     </div>
   );
 }
-
-// Variable for test completeness
-const selectedQuestions = 3;
