@@ -23,7 +23,7 @@ describe("extractUsedKeys - full fixture test", () => {
     expect(usedKeys.has("entity_count_one")).toBe(true);
     expect(usedKeys.has("entity_count_other")).toBe(true);
 
-    // -------- Plural Keys with i18n.t() --------
+    // -------- Plural Keys with t() --------
     expect(usedKeys.has("patient_count")).toBe(true);
     expect(usedKeys.has("patient_count_one")).toBe(true);
     expect(usedKeys.has("patient_count_other")).toBe(true);
@@ -44,16 +44,7 @@ describe("extractUsedKeys - full fixture test", () => {
     // -------- Dynamic prefixes --------
     expect(dynamicPrefixes.has("encounter_status__")).toBe(true);
 
-    // Sanity check (should have at least the base keys + plurals)
-    expect(usedKeys.size).toBeGreaterThanOrEqual(15);
-  });
-
-  it("should handle edge cases correctly", async () => {
-    const fixtureDir = path.join(__dirname, "fixtures");
-
-    const { usedKeys, dynamicPrefixes } = await extractUsedKeys(fixtureDir, [
-      "tsx",
-    ]);
+    // -------- Edge Cases --------
 
     // Trans with values but no count - should NOT add plural variants
     expect(usedKeys.has("welcome_message")).toBe(true);
@@ -69,12 +60,15 @@ describe("extractUsedKeys - full fixture test", () => {
     expect(usedKeys.has("no_items_one")).toBe(true);
     expect(usedKeys.has("no_items_other")).toBe(true);
 
-    // i18n.t() with multiline and count
+    // t() with multiline and count
     expect(usedKeys.has("multiline_key")).toBe(true);
     expect(usedKeys.has("multiline_key_one")).toBe(true);
     expect(usedKeys.has("multiline_key_other")).toBe(true);
 
     // Nested template literal should extract prefix
     expect(dynamicPrefixes.has("prefix__")).toBe(true);
+
+    // Sanity check (should have at least the base keys + plurals + edge cases)
+    expect(usedKeys.size).toBeGreaterThanOrEqual(20);
   });
 });

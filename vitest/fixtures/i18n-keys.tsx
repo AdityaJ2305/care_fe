@@ -4,7 +4,7 @@ import { Trans, useTranslation } from "react-i18next";
 const selectedQuestions = 3;
 
 export function AllKeysExample() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const status = "cancelled";
 
   return (
@@ -23,8 +23,8 @@ export function AllKeysExample() {
         })}
       </p>
 
-      {/* Plural key with i18n.t() */}
-      <p>{i18n.t("patient_count", { count: 10 })}</p>
+      {/* Plural key with t() - multiline */}
+      <p>{t("patient_count", { count: 10 })}</p>
 
       {/* Trans component without count */}
       <Trans i18nKey="page_title">
@@ -48,6 +48,28 @@ export function AllKeysExample() {
 
       {/* Dynamic template keys */}
       <div>{t(`encounter_status__${status}`)}</div>
+
+      {/* Edge case: Trans with values but no count */}
+      <Trans i18nKey="welcome_message" values={{ name: "John" }} />
+
+      {/* Edge case: Trans with i18nKey as expression */}
+      <Trans i18nKey={"static_key"}>
+        <span>Content</span>
+      </Trans>
+
+      {/* Edge case: t() with count = 0 */}
+      <p>{t("no_items", { count: 0 })}</p>
+
+      {/* Edge case: t() with multiline and count */}
+      <p>
+        {t("multiline_key", {
+          count: 1,
+          name: "Test",
+        })}
+      </p>
+
+      {/* Edge case: Nested template literal */}
+      <div>{t(`prefix__${status}__suffix`)}</div>
     </div>
   );
 }
