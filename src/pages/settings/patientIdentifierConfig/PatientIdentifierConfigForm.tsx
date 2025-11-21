@@ -202,7 +202,7 @@ export default function PatientIdentifierConfigForm({
                                 {Object.values(PatientIdentifierUse).map(
                                   (use) => (
                                     <SelectItem key={use} value={use}>
-                                      {t(use)}
+                                      {t(`patient_identifier_use__${use}`)}
                                     </SelectItem>
                                   ),
                                 )}
