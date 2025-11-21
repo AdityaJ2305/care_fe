@@ -100,7 +100,7 @@ function StatusSelector({
               htmlFor={`status-${status}`}
               className="text-sm mx-1 font-normal text-gray-950"
             >
-              {t(`status__${status}`)}
+              {t(status)}
             </Label>
           </div>
         ))}
@@ -127,8 +127,8 @@ function SubjectTypeSelector({
         className="flex w-fit items-center gap-0 border border-gray-300 divide-x rounded-md bg-white [&>div:has([data-state=checked])]:bg-primary-200"
       >
         {[
-          { value: "patient", label: t("patient") },
-          { value: "encounter", label: t("encounter") },
+          { value: "patient", label: "patient" },
+          { value: "encounter", label: "encounter" },
         ].map((type) => (
           <div
             key={type.value}
@@ -146,7 +146,7 @@ function SubjectTypeSelector({
               htmlFor={`subject-type-${type.value}`}
               className="text-sm mx-1 font-normal text-gray-950"
             >
-              {type.label}
+              {t(type.label)}
             </Label>
           </div>
         ))}

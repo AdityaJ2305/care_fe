@@ -199,20 +199,9 @@ function DateRangeOptions({
               isSameRange(option) && "bg-gray-100 border-green-500 border",
             )}
           >
-            {option.label === "today" && t("today")}
-            {option.label === "yesterday" && t("yesterday")}
-            {option.label === "tomorrow" && t("tomorrow")}
-            {option.label === "last_week" && t("last_week")}
-            {option.label === "next_week" && t("next_week")}
-            {option.label === "last_month" && t("last_month")}
-            {option.label === "next_month" && t("next_month")}
-            {option.label === "last_year" && t("last_year")}
-            {option.label === "last_count_days" &&
-              t("last_count_days", { count: option.count })}
-            {option.label === "last_count_weeks" &&
-              t("last_count_weeks", { count: option.count })}
-            {option.label === "last_count_months" &&
-              t("last_count_months", { count: option.count })}
+            {option.count
+              ? t(option.label, { count: option.count })
+              : t(option.label)}
           </Button>
         ))}
         <Button
