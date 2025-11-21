@@ -146,7 +146,8 @@ function SubjectTypeSelector({
               htmlFor={`subject-type-${type.value}`}
               className="text-sm mx-1 font-normal text-gray-950"
             >
-              {t(type.label)}
+              {type.label === "patient" && t("patient")}
+              {type.label === "encounter" && t("encounter")}
             </Label>
           </div>
         ))}
