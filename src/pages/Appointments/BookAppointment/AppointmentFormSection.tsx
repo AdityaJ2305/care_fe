@@ -40,7 +40,7 @@ export const AppointmentFormSection = ({
         </Label>
         <RadioInput
           options={Object.values(SchedulableResourceType).map((type) => ({
-            label: t(`resource_type__${type}`),
+            label: t(`appointment_resource_type__${type}`),
             value: type,
           }))}
           value={selectedResource.resource_type}
