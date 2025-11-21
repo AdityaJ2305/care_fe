@@ -473,7 +473,7 @@ export default function ConsentFormSheet({
                     <SelectContent>
                       {CONSENT_STATUSES.map((status) => (
                         <SelectItem key={status} value={status}>
-                          {t(`consent_status__${status}`)}
+                          {t(`status__${status}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>

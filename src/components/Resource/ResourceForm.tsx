@@ -365,7 +365,7 @@ export default function ResourceForm({ facilityId, id }: ResourceProps) {
                       <SelectContent>
                         {RESOURCE_REQUEST_STATUS_OPTIONS.map((option) => (
                           <SelectItem key={option.text} value={option.text}>
-                            {t(`resource_request_status__${option.text}`)}
+                            {t(`status__${option.text}`)}
                           </SelectItem>
                         ))}
                       </SelectContent>

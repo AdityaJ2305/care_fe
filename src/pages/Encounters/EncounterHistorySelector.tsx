@@ -127,7 +127,7 @@ function EncounterCard({
               size="sm"
               className=" whitespace-nowrap"
             >
-              {t(`encounter_status__${encounter.status}`)}
+              {t(`status__${encounter.status}`)}
             </Badge>
           </div>
         </div>
@@ -466,7 +466,7 @@ const EncounterSheetTrigger = () => {
                 size="sm"
                 className=" whitespace-nowrap"
               >
-                {t(`encounter_status__${encounter.status}`)}
+                {t(`status__${encounter.status}`)}
               </Badge>
             </div>
             <div className={buttonVariants({ variant: "ghost", size: "icon" })}>

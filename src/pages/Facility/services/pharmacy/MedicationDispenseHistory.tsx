@@ -157,7 +157,7 @@ export default function MedicationDispenseHistory({
                       <Badge
                         variant={ENCOUNTER_STATUS_COLORS[item.encounter.status]}
                       >
-                        {t(`encounter_status__${item.encounter.status}`)}
+                        {t(`status__${item.encounter.status}`)}
                       </Badge>
                     </TableCell>
                     <TableCell>{item.count}</TableCell>

@@ -55,7 +55,7 @@ export function TimelineEncounterCard({
             "relative p-1.5 rounded-full border transition-all duration-200 mt-4 group-hover:scale-105 group-hover:shadow-md",
             ENCOUNTER_STATUS_FILTER_COLORS[encounter.status],
           )}
-          aria-label={t(`encounter_status__${encounter.status}`)}
+          aria-label={t(`status__${encounter.status}`)}
         >
           <StatusIcon
             className={cn(
@@ -91,7 +91,7 @@ export function TimelineEncounterCard({
               size="sm"
               className="rounded-sm px-1.5 py-0.5"
             >
-              {t(`encounter_status__${encounter.status}`)}
+              {t(`status__${encounter.status}`)}
             </Badge>
           </div>
 

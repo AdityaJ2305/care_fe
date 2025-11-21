@@ -322,7 +322,7 @@ export function ConsentDetailPage({ consentId }: ConsentDetailPageProps) {
                       {t("status")}
                     </h3>
                     <p className="text-base font-semibold text-gray-700">
-                      {t(`consent_status__${consent.status}`)}
+                      {t(`status__${consent.status}`)}
                     </p>
                   </div>
                 </div>

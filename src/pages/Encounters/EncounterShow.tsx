@@ -313,7 +313,7 @@ export const EncounterShow = (props: Props) => {
                     size="sm"
                     className="whitespace-nowrap"
                   >
-                    {t(`encounter_status__${selectedEncounter.status}`)}
+                    {t(`status__${selectedEncounter.status}`)}
                   </Badge>
                 </div>
               )

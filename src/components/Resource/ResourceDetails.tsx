@@ -167,9 +167,7 @@ export default function ResourceDetails({
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-1">
                 <p className="text-sm font-medium">{t("status")}</p>
-                <Badge>
-                  {t(`resource_request_status__${data.status.toLowerCase()}`)}
-                </Badge>
+                <Badge>{t(`status__${data.status.toLowerCase()}`)}</Badge>
               </div>
               <div className="space-y-1">
                 <p className="text-sm font-medium">{t("category")}</p>

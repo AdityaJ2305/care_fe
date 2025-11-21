@@ -92,7 +92,7 @@ export const ResourceRequests = (props: PatientProps) => {
                           ]
                         }
                       >
-                        {t(`resource_request_status__${request.status}`)}
+                        {t(`status__${request.status}`)}
                       </Badge>
                     </TableCell>
                     <TableCell>

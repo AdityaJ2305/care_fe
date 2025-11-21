@@ -167,27 +167,21 @@ export const tagFilter = (
   mode: FilterMode = "multi",
   label?: string,
 ) =>
-  createFilterConfig(
-    key,
-    label || "tags",
-    "tag",
-    [],
-    {
-      resource: resource,
-      renderSelected: (selected: FilterValues) => {
-        return <SelectedTagBadge selected={selected as TagConfig[]} />;
-      },
-      getOperations: (selected: FilterValues) => {
-        const selectedTags = selected as TagConfig[];
-        if (selectedTags.length === 1)
-          return [{ label: "includes", value: "all" }];
-        return [
-          { label: "has_all_of", value: "all" },
-          { label: "has_any_of", value: "any" },
-        ];
-      },
-      mode,
-      icon: <Tag className="w-4 h-4" />,
-      operationKey: "tags_behavior",
+  createFilterConfig(key, label || "tags", "tag", [], {
+    resource: resource,
+    renderSelected: (selected: FilterValues) => {
+      return <SelectedTagBadge selected={selected as TagConfig[]} />;
     },
-  );
+    getOperations: (selected: FilterValues) => {
+      const selectedTags = selected as TagConfig[];
+      if (selectedTags.length === 1)
+        return [{ label: "includes", value: "all" }];
+      return [
+        { label: "has_all_of", value: "all" },
+        { label: "has_any_of", value: "any" },
+      ];
+    },
+    mode,
+    icon: <Tag className="w-4 h-4" />,
+    operationKey: "tags_behavior",
+  });

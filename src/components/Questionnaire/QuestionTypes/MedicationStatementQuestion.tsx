@@ -559,9 +559,7 @@ export function MedicationStatementQuestion({
                                 {expandedMedicationIndex !== index && (
                                   <div className="text-sm mt-1 text-gray-600">
                                     <span>
-                                      {t(
-                                        `medication_status__${medication.status}`,
-                                      )}
+                                      {t(`status__${medication.status}`)}
                                       {" · "}
                                     </span>
                                     {medication.effective_period?.start ? (
@@ -792,7 +790,7 @@ const MedicationStatementGridRow: React.FC<MedicationStatementGridRowProps> = ({
               (status) =>
                 (medication.id || status !== "entered_in_error") && (
                   <SelectItem key={status} value={status}>
-                    {t(`medication_status__${status}`)}
+                    {t(`status__${status}`)}
                   </SelectItem>
                 ),
             )}

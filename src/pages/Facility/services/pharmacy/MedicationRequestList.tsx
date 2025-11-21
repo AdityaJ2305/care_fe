@@ -99,7 +99,7 @@ export default function MedicationRequestList({
         "command",
         Object.values(PrescriptionStatus).map((status) => ({
           value: status,
-          label: t(`prescription_status__${status}`),
+          label: t(`status__${status}`),
           color: PRESCRIPTION_STATUS_STYLES[status],
         })),
       ),
@@ -193,7 +193,7 @@ export default function MedicationRequestList({
                 value={key}
                 className="border-b-2 px-2 sm:px-4 py-2 text-gray-600 hover:text-gray-900 data-[state=active]:border-b-primary-700  data-[state=active]:text-primary-800 data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none"
               >
-                {t(`prescription_status__${key}`)}
+                {t(`status__${key}`)}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -331,7 +331,7 @@ export default function MedicationRequestList({
                   </TableCell>
                   <TableCell>
                     <Badge variant={PRESCRIPTION_STATUS_STYLES[item.status]}>
-                      {t(`prescription_status__${item.status}`)}
+                      {t(`status__${item.status}`)}
                     </Badge>
                   </TableCell>
 
