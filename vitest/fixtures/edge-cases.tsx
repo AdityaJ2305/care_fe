@@ -2,6 +2,7 @@ import { Trans, useTranslation } from "react-i18next";
 
 export function EdgeCasesExample() {
   const { t, i18n } = useTranslation();
+  const status = "active";
 
   return (
     <div>
@@ -29,5 +30,3 @@ export function EdgeCasesExample() {
     </div>
   );
 }
-
-const status = "active";

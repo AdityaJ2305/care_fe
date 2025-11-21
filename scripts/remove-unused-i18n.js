@@ -110,7 +110,9 @@ async function extractUsedKeys(src, extensions) {
           const isTFunction =
             (callee.type === "Identifier" && callee.name === "t") ||
             (callee.type === "MemberExpression" &&
+              callee.object?.type === "Identifier" &&
               callee.object.name === "i18n" &&
+              callee.property?.type === "Identifier" &&
               callee.property.name === "t");
 
           if (!isTFunction || args.length === 0) {
@@ -159,12 +161,12 @@ async function extractUsedKeys(src, extensions) {
               const attrValue = attr.value;
 
               // Extract i18nKey
-              if (attrName === "i18nKey") {
+              if (attrName === "i18nKey" && attrValue) {
                 if (attrValue.type === "StringLiteral") {
                   i18nKey = attrValue.value;
                 } else if (
                   attrValue.type === "JSXExpressionContainer" &&
-                  attrValue.expression.type === "StringLiteral"
+                  attrValue.expression?.type === "StringLiteral"
                 ) {
                   i18nKey = attrValue.expression.value;
                 }
@@ -173,7 +175,8 @@ async function extractUsedKeys(src, extensions) {
               // Check if values prop has count
               if (
                 attrName === "values" &&
-                attrValue.type === "JSXExpressionContainer"
+                attrValue?.type === "JSXExpressionContainer" &&
+                attrValue.expression
               ) {
                 hasCount = hasCountProperty(attrValue.expression);
               }
