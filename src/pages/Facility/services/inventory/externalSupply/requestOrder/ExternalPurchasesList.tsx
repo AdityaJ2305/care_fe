@@ -39,7 +39,7 @@ export function ExternalPurchasesList({
         { value: "draft,pending", label: "requested" },
         {
           value: "completed,abandoned,entered_in_error",
-          label: "Completed",
+          label: "completed",
         },
       ]
     : ([

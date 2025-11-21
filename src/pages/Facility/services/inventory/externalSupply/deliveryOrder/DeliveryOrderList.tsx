@@ -42,7 +42,7 @@ export function DeliveryOrderList({
           { value: "pending", label: "in_transit" },
           {
             value: "completed",
-            label: "Completed",
+            label: "completed",
           },
         ]
       : [
