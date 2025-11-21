@@ -3,7 +3,6 @@ import { Trans, useTranslation } from "react-i18next";
 export function AllKeysExample() {
   const { t, i18n } = useTranslation();
   const status = "cancelled";
-  const count = 5;
 
   return (
     <div>

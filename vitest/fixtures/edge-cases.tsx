@@ -6,10 +6,7 @@ export function EdgeCasesExample() {
   return (
     <div>
       {/* Edge case: Trans with values but no count */}
-      <Trans
-        i18nKey="welcome_message"
-        values={{ name: "John" }}
-      />
+      <Trans i18nKey="welcome_message" values={{ name: "John" }} />
 
       {/* Edge case: Trans with i18nKey as expression */}
       <Trans i18nKey={"static_key"}>

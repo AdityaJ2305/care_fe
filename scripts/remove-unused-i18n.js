@@ -139,7 +139,10 @@ async function extractUsedKeys(src, extensions) {
               }
 
               // Check if values prop has count
-              if (attrName === "values" && attrValue.type === "JSXExpressionContainer") {
+              if (
+                attrName === "values" &&
+                attrValue.type === "JSXExpressionContainer"
+              ) {
                 hasCount = hasCountProperty(attrValue.expression);
               }
             }
