@@ -113,7 +113,17 @@ export function MultiSelect({
   );
 
   const listContent = (
-    <div className="flex flex-col h-full">
+    <div
+      className="flex flex-col h-full"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          e.stopPropagation();
+          onValueChange(selectedValues);
+          setOpen(false);
+        }
+      }}
+    >
       <Command className="flex-1 overflow-hidden">
         <div className="border border-gray-200 rounded-md m-1 mb-2">
           <CommandInput
@@ -235,7 +245,7 @@ export function MultiSelect({
       <Popover open={open} onOpenChange={setOpen} modal>
         <PopoverTrigger asChild>{triggerButton}</PopoverTrigger>
         <PopoverContent
-          className="p-0 w-(--radix-popover-trigger-width) max-h-[30vh] flex flex-col"
+          className="p-0 w-(--radix-popover-trigger-width) max-h-[70vh] flex flex-col"
           align="center"
         >
           {listContent}
