@@ -61,7 +61,7 @@ export function MultiSelect({
 
   React.useEffect(() => {
     setSelectedValues(value);
-  }, [value]);
+  }, [value, open]);
 
   const { t } = useTranslation();
 
@@ -235,7 +235,7 @@ export function MultiSelect({
       <Popover open={open} onOpenChange={setOpen} modal>
         <PopoverTrigger asChild>{triggerButton}</PopoverTrigger>
         <PopoverContent
-          className="p-0 w-(--radix-popover-trigger-width) max-h-[60vh] flex flex-col"
+          className="p-0 w-(--radix-popover-trigger-width) max-h-[30vh] flex flex-col"
           align="center"
         >
           {listContent}
