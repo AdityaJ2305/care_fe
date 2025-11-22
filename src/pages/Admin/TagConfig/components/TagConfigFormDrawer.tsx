@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   Drawer,
-  DrawerBody,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
@@ -11,7 +10,6 @@ import {
 } from "@/components/ui/drawer";
 import {
   Sheet,
-  SheetBody,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -86,20 +84,20 @@ export default function TagConfigFormDrawer({
                   : t("manage_tag_config_description")}
               </DrawerDescription>
             </DrawerHeader>
-            <DrawerBody className="px-3 pb-2">
+            <div className="overflow-y-auto flex-1 px-3 pb-2">
               <TagConfigForm
                 configId={configId}
                 parentId={parentId}
                 facilityId={facilityId}
                 onSuccess={handleSuccess}
               />
-            </DrawerBody>
+            </div>
           </DrawerContent>
         </Drawer>
       ) : (
         <Sheet open={open} onOpenChange={onOpenChange}>
           <SheetTrigger asChild>{trigger}</SheetTrigger>
-          <SheetContent>
+          <SheetContent className="overflow-y-auto">
             <SheetHeader className="flex flex-row items-center justify-between">
               <SheetTitle>{title}</SheetTitle>
               <SheetDescription className="sr-only">
@@ -108,14 +106,14 @@ export default function TagConfigFormDrawer({
                   : t("manage_tag_config_description")}
               </SheetDescription>
             </SheetHeader>
-            <SheetBody>
+            <div className="mt-6 pb-6">
               <TagConfigForm
                 configId={configId}
                 parentId={parentId}
                 facilityId={facilityId}
                 onSuccess={handleSuccess}
               />
-            </SheetBody>
+            </div>
           </SheetContent>
         </Sheet>
       )}

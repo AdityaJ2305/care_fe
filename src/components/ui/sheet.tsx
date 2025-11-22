@@ -31,7 +31,7 @@ function SheetOverlay({
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-white shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out dark:bg-gray-950 flex flex-col",
+  "fixed z-50 gap-4 bg-white p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out dark:bg-gray-950",
   {
     variants: {
       side: {
@@ -83,7 +83,7 @@ const SheetHeader = ({
   <div
     data-slot="sheet-header"
     className={cn(
-      "flex flex-col space-y-2 text-center sm:text-left p-6 flex-shrink-0",
+      "flex flex-col space-y-2 text-center sm:text-left",
       className,
     )}
     {...props}
@@ -98,7 +98,7 @@ const SheetFooter = ({
   <div
     data-slot="sheet-footer"
     className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 p-6 flex-shrink-0",
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
       className,
     )}
     {...props}
@@ -137,21 +137,8 @@ function SheetDescription({
 }
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
-const SheetBody = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    data-slot="sheet-body"
-    className={cn("flex-1 overflow-y-auto p-6", className)}
-    {...props}
-  />
-);
-SheetBody.displayName = "SheetBody";
-
 export {
   Sheet,
-  SheetBody,
   SheetClose,
   SheetContent,
   SheetDescription,

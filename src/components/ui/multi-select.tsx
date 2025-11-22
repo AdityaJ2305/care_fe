@@ -113,7 +113,7 @@ export function MultiSelect({
   );
 
   const listContent = (
-    <div>
+    <div className="flex flex-col h-full">
       <Command className="flex-1 overflow-hidden">
         <div className="border border-gray-200 rounded-md m-1 mb-2">
           <CommandInput
@@ -195,15 +195,15 @@ export function MultiSelect({
           )}
         </CommandList>
       </Command>
-      <div className="flex justify-end space-x-2 p-3 border-t border-t-gray-200 shrink-0">
+      <div className="flex justify-end space-x-2 p-3 border-t border-t-gray-200 flex-shrink-0">
         <Button
           variant="link"
           className="underline"
-          onSelect={() => alert("cancel")}
+          onClick={() => setOpen(false)}
         >
           {t("cancel")}
         </Button>
-        <Button onSelect={() => onValueChange(selectedValues)}>
+        <Button onClick={() => onValueChange(selectedValues)}>
           {t("done")} <ShortcutBadge actionId="enter-action" />
         </Button>
       </div>
@@ -215,8 +215,8 @@ export function MultiSelect({
       <div className="w-full">
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerTrigger asChild>{triggerButton}</DrawerTrigger>
-          <DrawerContent className="px-0 pt-2">
-            <div className="mt-3 pb-[env(safe-area-inset-bottom)]">
+          <DrawerContent className="px-0 pt-2 flex flex-col max-h-[85vh]">
+            <div className="mt-3 pb-[env(safe-area-inset-bottom)] flex flex-col flex-1 overflow-hidden">
               {listContent}
             </div>
           </DrawerContent>
