@@ -97,7 +97,7 @@ export default function TagConfigFormDrawer({
       ) : (
         <Sheet open={open} onOpenChange={onOpenChange}>
           <SheetTrigger asChild>{trigger}</SheetTrigger>
-          <SheetContent className="overflow-y-auto">
+          <SheetContent>
             <SheetHeader className="flex flex-row items-center justify-between">
               <SheetTitle>{title}</SheetTitle>
               <SheetDescription className="sr-only">
@@ -106,7 +106,7 @@ export default function TagConfigFormDrawer({
                   : t("manage_tag_config_description")}
               </SheetDescription>
             </SheetHeader>
-            <div className="mt-6 pb-6">
+            <div className="mt-6 pb-6 flex-1 overflow-y-auto">
               <TagConfigForm
                 configId={configId}
                 parentId={parentId}
