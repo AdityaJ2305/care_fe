@@ -113,11 +113,6 @@ export function ProductFormDrawer({
     createProduct(createPayload);
   }
 
-  function handleCancel() {
-    form.reset();
-    onOpenChange(false);
-  }
-
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent className="max-h-[90vh] flex flex-col px-8">
@@ -263,7 +258,7 @@ export function ProductFormDrawer({
         <DrawerFooter className="max-w-4xl mx-auto w-full flex-row justify-end gap-3 px-6 py-4 border-t border-gray-200">
           <Button
             variant="outline"
-            onClick={handleCancel}
+            onClick={() => onOpenChange(false)}
             className="h-11 px-6 text-base"
           >
             {t("cancel")}
