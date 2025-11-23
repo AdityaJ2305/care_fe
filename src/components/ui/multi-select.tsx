@@ -88,14 +88,15 @@ export function MultiSelect({
       role="combobox"
       onClick={() => setOpen((open) => !open)}
       className={cn(
-        "flex w-full p-1 rounded-md border min-h-10 items-center justify-between",
+        "flex w-full p-1 rounded-md border items-center justify-between",
+        open && "ring-2 ring-blue-500 border-0",
         className,
       )}
       {...props}
     >
       <div className="flex justify-between items-center w-full">
         {value.length == 0 ? (
-          <span className="text-sm text-black mx-3">{placeholder}</span>
+          <span className="text-sm text-gray-500 mx-3">{placeholder}</span>
         ) : (
           <Badge className="m-1" variant="secondary">
             {selectedPlaceholder
@@ -183,7 +184,7 @@ export function MultiSelect({
           )}
 
           {value.length < options.length && (
-            <CommandGroup heading={t("others")}>
+            <CommandGroup heading={t("non_selected")}>
               {options
                 .filter((option) => !value.includes(option.value))
                 .map((option) => (
@@ -215,12 +216,17 @@ export function MultiSelect({
           {t("cancel")}
         </Button>
         <Button
+          variant="primary_gradient"
+          className="flex items-center gap-2 px-2"
           onClick={() => {
             onValueChange(selectedValues);
             setOpen(false);
           }}
         >
-          {t("done")} <CareIcon icon="l-enter" className="size-4 ml-2" />
+          {t("done")}
+          <span className="flex items-center justify-center rounded-md border px-1.5 py-0.5 text-xs font-medium border-white/25 bg-white/15">
+            <CareIcon icon="l-enter" className="size-4" />
+          </span>
         </Button>
       </div>
     </div>
