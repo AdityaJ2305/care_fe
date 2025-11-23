@@ -24,6 +24,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import { ShortcutBadge } from "@/Utils/keyboardShortcutComponents";
 
 type ButtonProps = Omit<
   React.ComponentProps<typeof Button>,
@@ -113,7 +114,7 @@ export function MultiSelect({
 
   const listContent = (
     <div
-      className="flex flex-col"
+      className="flex flex-col h-full"
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -123,7 +124,7 @@ export function MultiSelect({
         }
       }}
     >
-      <Command className="flex-1 overflow-hidden">
+      <Command className="flex-1 overflow-hidden min-h-0">
         <div className="border border-gray-200 rounded-md m-1 mb-2">
           <CommandInput
             placeholder={
@@ -218,7 +219,7 @@ export function MultiSelect({
             setOpen(false);
           }}
         >
-          {t("done")} <CareIcon icon="l-enter" className="size-4 ml-2" />
+          {t("done")} <ShortcutBadge actionId="enter-action" />
         </Button>
       </div>
     </div>
@@ -244,7 +245,7 @@ export function MultiSelect({
       <Popover open={open} onOpenChange={setOpen} modal>
         <PopoverTrigger asChild>{triggerButton}</PopoverTrigger>
         <PopoverContent
-          className="p-0 w-(--radix-popover-trigger-width) max-h-[35vh] flex flex-col overflow-hidden"
+          className="p-0 w-(--radix-popover-trigger-width) max-h-[35vh] flex flex-col"
           align="center"
         >
           {listContent}
