@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Command,
+  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -24,7 +25,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import useBreakpoints from "@/hooks/useBreakpoints";
-import { ShortcutBadge } from "@/Utils/keyboardShortcutComponents";
 
 type ButtonProps = Omit<
   React.ComponentProps<typeof Button>,
@@ -114,7 +114,7 @@ export function MultiSelect({
 
   const listContent = (
     <div
-      className="flex flex-col h-full"
+      className="flex flex-col h-full overflow-hidden"
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -137,6 +137,7 @@ export function MultiSelect({
           />
         </div>
         <CommandList>
+          <CommandEmpty>{t("no_results_found")}</CommandEmpty>
           <CommandGroup>
             <CommandItem
               key="all"
@@ -182,7 +183,7 @@ export function MultiSelect({
           )}
 
           {value.length < options.length && (
-            <CommandGroup>
+            <CommandGroup heading={t("others")}>
               {options
                 .filter((option) => !value.includes(option.value))
                 .map((option) => (
@@ -205,7 +206,7 @@ export function MultiSelect({
           )}
         </CommandList>
       </Command>
-      <div className="flex justify-end space-x-2 p-3 border-t border-t-gray-200 flex-shrink-0">
+      <div className="flex justify-end space-x-2 p-3 border-t border-t-gray-200 shrink-0">
         <Button
           variant="link"
           className="underline"
@@ -219,7 +220,7 @@ export function MultiSelect({
             setOpen(false);
           }}
         >
-          {t("done")} <ShortcutBadge actionId="enter-action" />
+          {t("done")} <CareIcon icon="l-enter" className="size-4 ml-2" />
         </Button>
       </div>
     </div>
@@ -245,7 +246,7 @@ export function MultiSelect({
       <Popover open={open} onOpenChange={setOpen} modal>
         <PopoverTrigger asChild>{triggerButton}</PopoverTrigger>
         <PopoverContent
-          className="p-0 w-(--radix-popover-trigger-width) max-h-[35vh] flex flex-col"
+          className="p-0 w-(--radix-popover-trigger-width) max-h-[35vh] flex flex-col overflow-hidden"
           align="center"
         >
           {listContent}
