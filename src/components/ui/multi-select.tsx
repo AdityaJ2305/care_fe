@@ -24,7 +24,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import useBreakpoints from "@/hooks/useBreakpoints";
-import { ShortcutBadge } from "@/Utils/keyboardShortcutComponents";
 
 type ButtonProps = Omit<
   React.ComponentProps<typeof Button>,
@@ -219,7 +218,7 @@ export function MultiSelect({
             setOpen(false);
           }}
         >
-          {t("done")} <ShortcutBadge actionId="enter-action" />
+          {t("done")} <CareIcon icon="l-enter" className="size-4 ml-2" />
         </Button>
       </div>
     </div>
