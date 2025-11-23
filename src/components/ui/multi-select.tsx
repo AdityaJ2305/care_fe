@@ -137,7 +137,7 @@ export function MultiSelect({
             autoFocus
           />
         </div>
-        <CommandList>
+        <CommandList className="flex-1 max-h-none overflow-y-auto">
           <CommandEmpty>{t("no_results_found")}</CommandEmpty>
           <CommandGroup>
             <CommandItem
