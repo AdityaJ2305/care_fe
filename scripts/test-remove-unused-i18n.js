@@ -8,17 +8,22 @@
 const { extractUsedKeys, cleanLocaleFiles } = require('./remove-unused-i18n.js');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 /**
  * Test helper to create temporary test environment
  */
 function setupTestEnv() {
-  const testDir = '/tmp/test-i18n-src';
-  const testLocaleDir = '/tmp/test-i18n-locale';
+  const testDir = path.join(os.tmpdir(), 'test-i18n-src');
+  const testLocaleDir = path.join(os.tmpdir(), 'test-i18n-locale');
   
   // Clean up and create directories
-  if (fs.existsSync(testDir)) fs.rmSync(testDir, { recursive: true });
-  if (fs.existsSync(testLocaleDir)) fs.rmSync(testLocaleDir, { recursive: true });
+  if (fs.existsSync(testDir)) {
+    fs.rmSync(testDir, { recursive: true, force: true });
+  }
+  if (fs.existsSync(testLocaleDir)) {
+    fs.rmSync(testLocaleDir, { recursive: true, force: true });
+  }
   fs.mkdirSync(testDir, { recursive: true });
   fs.mkdirSync(testLocaleDir, { recursive: true });
   
@@ -30,7 +35,7 @@ function setupTestEnv() {
  */
 async function testDynamicPrefixDetection() {
   console.log("\n🧪 Test 1: Dynamic Prefix Detection");
-  console.log("=" .repeat(60));
+  console.log("=".repeat(60));
   
   const { testDir, testLocaleDir } = setupTestEnv();
   
