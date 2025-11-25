@@ -13,12 +13,18 @@
  *   - <Trans i18nKey="key" values={{ count: ... }} />
  * - ✅ Detects Trans components: <Trans i18nKey="key">...</Trans>
  * - ✅ Detects dynamic keys: t(`prefix__${variable}`) extracts "prefix__" as dynamic prefix
+ *   - Examples: encounter_status__, product_knowledge_type__, etc.
+ *   - Works with any variable name and expression complexity
+ *   - Preserves ALL keys starting with detected prefixes
  * - ✅ Handles multiline and nested expressions correctly
  *
  * Usage:
  *   node scripts/remove-unused-i18n.js
  *
- * For testing:
+ * Testing:
+ *   npm run test:i18n
+ *
+ * For programmatic use:
  *   const { extractUsedKeys } = require('./scripts/remove-unused-i18n.js');
  *   const { usedKeys, dynamicPrefixes } = await extractUsedKeys('./src', ['tsx', 'ts']);
  */
