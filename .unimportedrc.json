@@ -23,6 +23,12 @@
   ],
   "ignoreUnresolved": [
     [
+      "__federation__",
+      [
+        "src/PluginEngine.tsx"
+      ]
+    ],
+    [
       "./pluginMap",
       [
         "src/pluginTypes.ts"
@@ -32,18 +38,6 @@
       "@/supportedBrowsers",
       [
         "src/components/ErrorPages/BrowserWarning.tsx"
-      ]
-    ],
-    [
-      "__federation__",
-      [
-        "src/PluginEngine.tsx"
-      ]
-    ],
-    [
-      "supports-color",
-      [
-        "node_modules/debug/src/node.js"
       ]
     ],
     [

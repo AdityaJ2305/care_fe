@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { cn } from "@/lib/utils";
 
 import {
@@ -21,6 +23,8 @@ interface GenericTableProps {
 }
 
 export default function PrintTable({ headers, rows }: GenericTableProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200">
       <Table className="w-full">
@@ -35,7 +39,7 @@ export default function PrintTable({ headers, rows }: GenericTableProps) {
                 )}
                 key={key}
               >
-                {key}
+                {t(key)}
               </TableHead>
             ))}
           </TableRow>

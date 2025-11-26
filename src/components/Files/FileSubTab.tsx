@@ -316,9 +316,9 @@ export const FilesPage = ({
           className="cursor-pointer"
           onClick={() => updateQuery({ is_archived: undefined })}
         >
-          {qParams.is_archived === "false"
-            ? t("active_files")
-            : t("archived_files")}
+          {t(
+            qParams.is_archived === "false" ? "active_files" : "archived_files",
+          )}
           <CareIcon icon="l-times-circle" />
         </Badge>
       </div>

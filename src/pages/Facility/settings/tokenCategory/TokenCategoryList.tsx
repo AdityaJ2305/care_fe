@@ -230,9 +230,7 @@ export default function TokenCategoryList({
                               ]
                             }
                           >
-                            {t(
-                              `schedule_resource__${tokenCategory.resource_type}`,
-                            )}
+                            {t(tokenCategory.resource_type)}
                           </Badge>
                         </TableCell>
                         <TableCell>{tokenCategory.shorthand || "-"}</TableCell>
