@@ -161,7 +161,6 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
         // Ignore test files from file watching to avoid unnecessary HMR triggers
         ignored: [
           "**/tests/**",
-          "**/vitest/**",
           "**/test/**",
           "**/*.test.*",
           "**/*.spec.*",

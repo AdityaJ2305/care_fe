@@ -157,9 +157,7 @@ export default function ProductView({ facilityId, productId }: Props) {
                         ]
                       }
                     >
-                      {t(
-                        `product_knowledge_type__${product.product_knowledge.product_type}`,
-                      )}
+                      {t(product.product_knowledge.product_type)}
                     </Badge>
                   </div>
                   <h3 className="font-medium">

@@ -204,15 +204,6 @@ const config = [
       },
     },
   },
-  {
-    files: ["vitest/**/*.{ts,tsx}"],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        project: "./vitest/tsconfig.json",
-      },
-    },
-  },
 
   // Add prettier recommended config last
   eslintPluginPrettierRecommended,

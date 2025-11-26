@@ -12,19 +12,19 @@ export function BedStatusLegend({ className }: BedStatusLegendProps) {
   const statuses = [
     {
       image: "/images/bed-available.svg",
-      label: t("available"),
+      label: "available",
     },
     {
       image: "/images/bed-available-selected.svg",
-      label: t("available_selected"),
+      label: "available_selected",
     },
     {
       image: "/images/bed-unavailable.svg",
-      label: t("occupied"),
+      label: "occupied",
     },
     {
       image: "/images/bed-unavailable-selected.svg",
-      label: t("occupied_selected"),
+      label: "occupied_selected",
     },
   ];
 
@@ -35,11 +35,11 @@ export function BedStatusLegend({ className }: BedStatusLegendProps) {
           <div className="relative size-6">
             <img
               src={status.image}
-              alt={status.label}
+              alt={t(status.label)}
               className="w-full h-full"
             />
           </div>
-          <span className="text-xs">{status.label}</span>
+          <span className="text-xs">{t(status.label)}</span>
         </div>
       ))}
     </div>
