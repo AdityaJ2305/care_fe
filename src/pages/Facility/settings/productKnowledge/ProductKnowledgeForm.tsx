@@ -547,7 +547,7 @@ function ProductKnowledgeFormContent({
                             {Object.values(ProductKnowledgeStatus).map(
                               (status) => (
                                 <SelectItem key={status} value={status}>
-                                  {t(status)}
+                                  {t(`status__${status}`)}
                                 </SelectItem>
                               ),
                             )}

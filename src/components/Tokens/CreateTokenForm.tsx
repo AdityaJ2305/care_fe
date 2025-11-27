@@ -239,7 +239,7 @@ export default function CreateTokenForm({
                     >
                       <div className="flex flex-col items-start">
                         <div className="text-sm font-semibold">
-                          {t(`resource_type__${type}`)}
+                          {t(`appointment_resource_type__${type}`)}
                         </div>
                         <div className="text-xs text-gray-500">
                           {t(`resource_type_description__${type}`)}

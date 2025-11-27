@@ -55,7 +55,7 @@ function TokenCategoryCard({
                   SCHEDULABLE_RESOURCE_TYPE_COLORS[tokenCategory.resource_type]
                 }
               >
-                {t(tokenCategory.resource_type)}
+                {t(`schedule_resource__${tokenCategory.resource_type}`)}
               </Badge>
             </div>
             <h3 className="font-medium text-gray-900 text-lg">

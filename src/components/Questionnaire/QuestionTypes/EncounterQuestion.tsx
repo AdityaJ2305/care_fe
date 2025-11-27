@@ -262,7 +262,7 @@ export function EncounterQuestion({
             <SelectContent>
               {ENCOUNTER_STATUS.map((encounterStatus) => (
                 <SelectItem key={encounterStatus} value={encounterStatus}>
-                  {t(`encounter_status__${encounterStatus}`)}
+                  {t(`status__${encounterStatus}`)}
                 </SelectItem>
               ))}
             </SelectContent>

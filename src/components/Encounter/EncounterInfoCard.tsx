@@ -60,7 +60,7 @@ export default function EncounterInfoCard(props: EncounterInfoCardProps) {
             <Badge variant="destructive">{t("deceased")}</Badge>
           )}
           <Badge variant={ENCOUNTER_STATUS_COLORS[encounter.status]}>
-            {t(`encounter_status__${encounter.status}`)}
+            {t(`status__${encounter.status}`)}
           </Badge>
         </div>
       </CardHeader>

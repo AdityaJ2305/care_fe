@@ -32,7 +32,7 @@ export const StatusBadge = ({ encounter }: { encounter: EncounterRead }) => {
           {React.createElement(ENCOUNTER_STATUS_ICONS[encounter.status], {
             className: "size-3",
           })}
-          {t(`encounter_status__${encounter.status}`)}
+          {t(`status__${encounter.status}`)}
           <ChevronDown className="size-3 opacity-50" />
         </Badge>
       </PopoverTrigger>
@@ -45,7 +45,7 @@ export const StatusBadge = ({ encounter }: { encounter: EncounterRead }) => {
                 {formatDateTime(history.moved_at)}
               </span>
               <span className="font-medium">
-                {t(`encounter_status__${history.status}`)}
+                {t(`status__${history.status}`)}
               </span>
             </div>
           ))}

@@ -487,7 +487,7 @@ function ObservationDefinitionFormContent({
                           <SelectContent>
                             {OBSERVATION_DEFINITION_STATUS.map((status) => (
                               <SelectItem key={status} value={status}>
-                                {t(status)}
+                                {t(`status__${status}`)}
                               </SelectItem>
                             ))}
                           </SelectContent>

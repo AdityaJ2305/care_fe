@@ -321,7 +321,7 @@ export function ProductFormContent({
                     <SelectContent>
                       {Object.values(ProductStatusOptions).map((status) => (
                         <SelectItem key={status} value={status}>
-                          {t(status)}
+                          {t(`status__${status}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>

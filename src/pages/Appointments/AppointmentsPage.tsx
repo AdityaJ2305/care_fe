@@ -606,7 +606,7 @@ function AppointmentColumn(props: {
                           >
                             {selectedStatuses.includes(status) && <CheckIcon />}
                           </div>
-                          <span>{t(status)}</span>
+                          <span>{t(`status__${status}`)}</span>
                         </div>
                       </CommandItem>
                     ))}
@@ -627,7 +627,7 @@ function AppointmentColumn(props: {
                 onClick={() => toggleStatus(status)}
                 className="bg-white"
               >
-                {t(status)}
+                {t(`status__${status}`)}
                 <Button variant="ghost" size="icon" className="size-6 -mr-2">
                   <CareIcon icon="l-times" />
                 </Button>

@@ -123,7 +123,7 @@ function ConsentCard({
             <Badge
               variant={consent.status === "active" ? "primary" : "secondary"}
             >
-              {t(`consent_status__${consent.status}`)}
+              {t(`status__${consent.status}`)}
             </Badge>
           </div>
         </div>

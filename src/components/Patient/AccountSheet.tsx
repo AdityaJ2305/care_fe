@@ -175,7 +175,9 @@ export function AccountSheetButton({
                           {t("billing_status")}
                         </span>
                         <span className="font-medium">
-                          {t(accounts[0].billing_status)}
+                          {t(
+                            `account_billing_status__${accounts[0].billing_status}`,
+                          )}
                         </span>
 
                         <span className="text-gray-500">{t("start_date")}</span>

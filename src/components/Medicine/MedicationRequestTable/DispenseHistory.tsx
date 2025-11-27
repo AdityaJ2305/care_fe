@@ -122,7 +122,7 @@ export function DispenseHistory({
                       MEDICATION_DISPENSE_STATUS_COLORS[medication.status]
                     }
                   >
-                    {t(medication.status)}
+                    {t(`status__${medication.status}`)}
                   </Badge>
                 </TableCell>
                 <TableCell className="text-gray-950">

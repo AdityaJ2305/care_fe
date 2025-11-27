@@ -216,7 +216,7 @@ function MedicationTable({
                                 key={status}
                                 value={status.toString()}
                               >
-                                {t(status)}
+                                {t(`status__${status}`)}
                               </SelectItem>
                             );
                           })}

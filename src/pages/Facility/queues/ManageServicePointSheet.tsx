@@ -194,7 +194,7 @@ function SubQueueCard({
                 <Label className="mb-2">{t("status")}</Label>
                 <RadioInput
                   options={Object.values(TokenSubQueueStatus).map((status) => ({
-                    label: t(status),
+                    label: t(`status__${status}`),
                     value: status,
                   }))}
                   value={subQueueStatus}

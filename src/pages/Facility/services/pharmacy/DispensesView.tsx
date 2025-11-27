@@ -114,7 +114,7 @@ export default function DispensesView({
               value={statusValue}
               className="border-b-3 px-1.5 sm:px-2.5 py-2 text-gray-600 font-semibold hover:text-gray-900 data-[state=active]:border-b-primary-700  data-[state=active]:text-primary-800 data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none"
             >
-              {t(statusValue)}
+              {t(`status__${statusValue}`)}
             </TabsTrigger>
           ))}
           {dropdownItems.length > 0 && (
@@ -135,7 +135,7 @@ export default function DispensesView({
                     onClick={() => handleDropdownSelect(statusValue)}
                     className="text-gray-950 font-medium text-sm"
                   >
-                    {t(statusValue)}
+                    {t(`status__${statusValue}`)}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>

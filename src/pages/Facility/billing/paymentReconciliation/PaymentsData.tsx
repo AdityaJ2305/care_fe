@@ -117,7 +117,7 @@ export default function PaymentsData({
               <TabsTrigger value="all">{t("all_status")}</TabsTrigger>
               {Object.values(PaymentReconciliationStatus).map((status) => (
                 <TabsTrigger key={status} value={status}>
-                  {t(status)}
+                  {t(`status__${status}`)}
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -136,7 +136,7 @@ export default function PaymentsData({
                 <SelectItem value="all">{t("all")}</SelectItem>
                 {Object.values(PaymentReconciliationStatus).map((status) => (
                   <SelectItem key={status} value={status}>
-                    {t(status)}
+                    {t(`status__${status}`)}
                   </SelectItem>
                 ))}
               </SelectGroup>

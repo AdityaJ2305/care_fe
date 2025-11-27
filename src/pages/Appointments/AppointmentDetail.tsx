@@ -380,9 +380,7 @@ export default function AppointmentDetail(props: Props) {
                       }
                       className="text-xs"
                     >
-                      {t(
-                        `encounter_status__${appointment.associated_encounter.status}`,
-                      )}
+                      {t(`status__${appointment.associated_encounter.status}`)}
                     </Badge>
                     <Badge
                       variant={

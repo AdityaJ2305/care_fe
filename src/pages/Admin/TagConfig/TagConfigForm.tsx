@@ -329,7 +329,7 @@ export default function TagConfigForm({
                 <SelectContent>
                   {Object.values(TagStatus).map((status) => (
                     <SelectItem key={status} value={status}>
-                      {t(status)}
+                      {t(`status__${status}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>

@@ -484,7 +484,7 @@ export function ValueSetForm({
                 <SelectContent>
                   {valuesOf(ValueSetStatus).map((status) => (
                     <SelectItem key={status} value={status}>
-                      {t(status)}
+                      {t(`status__${status}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>

@@ -47,7 +47,7 @@ export function AllKeysExample() {
       />
 
       {/* Dynamic template keys */}
-      <div>{t(`encounter_status__${status}`)}</div>
+      <div>{t(`status__${status}`)}</div>
 
       {/* Edge case: Trans with values but no count */}
       <Trans i18nKey="welcome_message" values={{ name: "John" }} />

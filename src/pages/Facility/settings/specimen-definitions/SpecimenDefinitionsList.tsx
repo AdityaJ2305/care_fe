@@ -54,7 +54,7 @@ function SpecimenDefinitionCard({
               <Badge
                 variant={SPECIMEN_DEFINITION_STATUS_COLORS[definition.status]}
               >
-                {t(definition.status)}
+                {t(`status__${definition.status}`)}
               </Badge>
             </div>
             <h3 className="font-medium text-gray-900 text-lg">
@@ -217,7 +217,7 @@ export function SpecimenDefinitionsList({
                               ]
                             }
                           >
-                            {t(definition.status)}
+                            {t(`status__${definition.status}`)}
                           </Badge>
                         </TableCell>
                         <TableCell className="whitespace-pre-wrap">

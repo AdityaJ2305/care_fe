@@ -216,7 +216,7 @@ export default function ResourceList({ facilityId }: { facilityId: string }) {
                   <SelectContent>
                     {currentStatuses.map((statusOption) => (
                       <SelectItem key={statusOption} value={statusOption}>
-                        {t(`resource_request_status__${statusOption}`)}
+                        {t(`status__${statusOption}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -241,7 +241,7 @@ export default function ResourceList({ facilityId }: { facilityId: string }) {
                         }
                         className="size-4"
                       />
-                      {t(`resource_request_status__${statusOption}`)}
+                      {t(`status__${statusOption}`)}
                     </TabsTrigger>
                   ))}
                 </TabsList>

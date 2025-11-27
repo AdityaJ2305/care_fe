@@ -42,29 +42,6 @@ import {
 } from "@/types/billing/invoice/invoice";
 import invoiceApi from "@/types/billing/invoice/invoiceApi";
 
-const statusMap: Record<InvoiceStatus, { label: string; color: string }> = {
-  [InvoiceStatus.draft]: {
-    label: "draft",
-    color: "bg-gray-100 text-gray-900 border-gray-200",
-  },
-  [InvoiceStatus.issued]: {
-    label: "issued",
-    color: "bg-blue-100 text-blue-900 border-blue-200",
-  },
-  [InvoiceStatus.balanced]: {
-    label: "balanced",
-    color: "bg-green-100 text-green-900 border-green-200",
-  },
-  [InvoiceStatus.cancelled]: {
-    label: "cancelled",
-    color: "bg-red-100 text-red-900 border-red-200",
-  },
-  [InvoiceStatus.entered_in_error]: {
-    label: "entered_in_error",
-    color: "bg-red-100 text-red-900 border-red-200",
-  },
-};
-
 export default function InvoicesData({
   facilityId,
   accountId,
@@ -113,7 +90,7 @@ export default function InvoicesData({
             <TabsTrigger value="all">{t("all")}</TabsTrigger>
             {Object.values(InvoiceStatus).map((status) => (
               <TabsTrigger key={status} value={status}>
-                {t(statusMap[status].label)}
+                {t(`invoice_status__${status}`)}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -147,7 +124,7 @@ export default function InvoicesData({
               <SelectItem value="all">{t("all")}</SelectItem>
               {Object.values(InvoiceStatus).map((status) => (
                 <SelectItem key={status} value={status}>
-                  {t(statusMap[status].label)}
+                  {t(`invoice_status__${status}`)}
                 </SelectItem>
               ))}
             </SelectGroup>
@@ -182,7 +159,7 @@ export default function InvoicesData({
 
                   <TableCell>
                     <Badge variant={INVOICE_STATUS_COLORS[invoice.status]}>
-                      {t(statusMap[invoice.status].label)}
+                      {t(`invoice_status__${invoice.status}`)}
                     </Badge>
                   </TableCell>
                   <TableCell>

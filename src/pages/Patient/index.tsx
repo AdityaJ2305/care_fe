@@ -91,7 +91,10 @@ function PatientIndex() {
           <CardTitle>
             <div className="flex flex-col">
               <span className="text-xs font-medium">
-                {t(appointment.resource_type, { count: 1 })}:{" "}
+                {t(
+                  `appointment_appointment_resource_type__${appointment.resource_type}`,
+                )}
+                :{" "}
               </span>
               <span className="text-sm">
                 {formatScheduleResourceName(appointment)}
@@ -129,7 +132,7 @@ function PatientIndex() {
                   <Badge
                     variant={APPOINTMENT_STATUS_COLORS[appointment.status]}
                   >
-                    {t(appointment.status)}
+                    {t(`appointment_status__${appointment.status}`)}
                   </Badge>
                 </span>
               </div>

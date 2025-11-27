@@ -139,7 +139,7 @@ export function SpecimenDefinitionDetail({
                 SPECIMEN_DEFINITION_STATUS_COLORS[specimenDefinition.status]
               }
             >
-              {t(specimenDefinition.status)}
+              {t(`status__${specimenDefinition.status}`)}
             </Badge>
           </div>
 

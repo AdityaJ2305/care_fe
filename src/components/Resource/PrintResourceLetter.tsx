@@ -85,9 +85,7 @@ export default function PrintResourceLetter({ id }: { id: string }) {
             {/* Status Section */}
             <div className="mb-4">
               <span className="font-semibold">{t("current_status")}: </span>
-              <Badge variant="secondary">
-                {t(`resource_request_status__${data.status}`)}
-              </Badge>
+              <Badge variant="secondary">{t(`status__${data.status}`)}</Badge>
             </div>
           </div>
 
@@ -109,7 +107,7 @@ export default function PrintResourceLetter({ id }: { id: string }) {
               <div>
                 <div className="mb-20">
                   <div className="font-semibold">
-                    {t(`resource_request_status__${data.status}`)} {t("by")}:
+                    {t(`status__${data.status}`)} {t("by")}:
                   </div>
                   <div>
                     {data.updated_by ? formatName(data.updated_by) : "--"}

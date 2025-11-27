@@ -76,7 +76,7 @@ export const MedicationStatementTable = ({
                 variant={MEDICATION_STATEMENT_STATUS_STYLES[statement.status]}
                 className="whitespace-nowrap capitalize"
               >
-                {t(`medication_status__${statement.status}`)}
+                {t(`status__${statement.status}`)}
               </Badge>
             </TableCell>
             <TableCell>

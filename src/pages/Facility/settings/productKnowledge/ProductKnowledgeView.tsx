@@ -229,7 +229,7 @@ export default function ProductKnowledgeView({ facilityId, slug }: Props) {
                     <div className="space-y-2">
                       <p className="font-medium">{name.name}</p>
                       <p className="text-sm text-gray-500">
-                        {t(name.name_type)}
+                        {t(`product_name_type__${name.name_type}`)}
                       </p>
                     </div>
                   </div>

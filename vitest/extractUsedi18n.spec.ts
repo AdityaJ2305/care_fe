@@ -42,7 +42,7 @@ describe("extractUsedKeys - full fixture test", () => {
     expect(usedKeys.has("remove_questions_confirmation_other")).toBe(true);
 
     // -------- Dynamic prefixes --------
-    expect(dynamicPrefixes.has("encounter_status__")).toBe(true);
+    expect(dynamicPrefixes.has("status__")).toBe(true);
 
     // -------- Edge Cases --------
 
