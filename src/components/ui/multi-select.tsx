@@ -131,18 +131,15 @@ export function MultiSelect({
           if (hoveredItem) {
             e.preventDefault();
             e.stopPropagation();
-            // Trigger click on the hovered item to toggle selection
+            // Simulate click to trigger the onSelect callback
             (hoveredItem as HTMLElement).click();
             return;
           }
         }
 
-        // Only handle Enter key when the target is not a CommandItem
-        // This prevents double-triggering when Enter is pressed on a hovered item
-        if (
-          e.key === "Enter" &&
-          !(e.target as HTMLElement).closest('[data-slot="command-item"]')
-        ) {
+        // Only handle Enter key when not triggered from within a CommandItem
+        // Check if currentTarget and target are the same to ensure Enter wasn't pressed on a child element
+        if (e.key === "Enter" && e.currentTarget === e.target) {
           e.preventDefault();
           e.stopPropagation();
           onValueChange(selectedValues);
