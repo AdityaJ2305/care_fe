@@ -123,7 +123,26 @@ export function MultiSelect({
     <div
       className="flex flex-col h-full overflow-hidden"
       onKeyDown={(e) => {
-        if (e.key === "Enter") {
+        // Handle Space key to toggle selection of hovered item
+        if (e.key === " ") {
+          const hoveredItem = (e.currentTarget as HTMLElement).querySelector(
+            '[data-slot="command-item"][data-selected="true"]',
+          );
+          if (hoveredItem) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Trigger click on the hovered item to toggle selection
+            (hoveredItem as HTMLElement).click();
+            return;
+          }
+        }
+
+        // Only handle Enter key when the target is not a CommandItem
+        // This prevents double-triggering when Enter is pressed on a hovered item
+        if (
+          e.key === "Enter" &&
+          !(e.target as HTMLElement).closest('[data-slot="command-item"]')
+        ) {
           e.preventDefault();
           e.stopPropagation();
           onValueChange(selectedValues);
@@ -140,7 +159,6 @@ export function MultiSelect({
                 : t("search_options_here")
             }
             className="outline-hidden border-none ring-0 shadow-none -ml-3"
-            autoFocus
           />
         </div>
         <CommandList className="max-h-none">
